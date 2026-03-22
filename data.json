@@ -1,0 +1,9 @@
+{
+	"customers":[
+		{"id": 1, "name": "Md. Saddam Hossain", "city": "Dhaka"},
+		{"id": 2, "name": "Md. Sabuj Ahmed", "city": "Sylhet"},
+		{"id": 3, "name": "Md. Kawser", "city": "Khulna"},
+		{"id": 4, "name": "Mrs. Papiya", "city": "Pabna"}
+	]
+
+}
