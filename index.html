@@ -2,38 +2,49 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>AppML CRUD Example</title>
+  <title>AppML Dashboard with Charts</title>
   <script src="appml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="app.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 
-<div class="max-2-3xl mx-auto bg-white p-6 rounded shadow">
-  <h1 class="text-2xl font-bold mb-4">Customer Dashboard</h1>
+<div class="max-w-6xl mx-auto bg-white p-6 rounded shadow">
+  <h1 class="text-3xl font-bold mb-6">Customer Dashboard</h1>
 
- <!-- Add + Search -->
-<div class="flex gap-2 mb-4 flex-wrap">
-  <input type="text" id="name" placeholder="Name" class="border p-2 flex-1">
-  <input type="text" id="city" placeholder="City" class="border p-2 flex-1">
-  <button id="addBtn" class="bg-blue-500 text-white p-2 rounded">Add</button>
-  <input type="text" id="searchBox" placeholder="Search..." class="border p-2 flex-1">
-  <button id="exportBtn" class="bg-green-500 text-white px-4 py-2 rounded">Export CSV</button>
-</div>
+  <!-- Add + Search + Export -->
+  <div class="flex gap-2 mb-6 flex-wrap">
+    <input id="name" type="text" placeholder="Name" class="border p-2 flex-1">
+    <input id="city" type="text" placeholder="City" class="border p-2 flex-1">
+    <button id="addBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+    <input id="searchBox" type="text" placeholder="Search..." class="border p-2 flex-1">
+    <button id="exportBtn" class="bg-green-500 text-white px-4 py-2 rounded">Export CSV</button>
+  </div>
 
+  <!-- Charts -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-gray-50 p-4 rounded shadow">
+      <h2 class="font-bold mb-2">Customers by City</h2>
+      <canvas id="cityChart"></canvas>
+    </div>
+    <div class="bg-gray-50 p-4 rounded shadow">
+      <h2 class="font-bold mb-2">Total Customers</h2>
+      <canvas id="totalChart"></canvas>
+    </div>
+  </div>
 
-<!-- Customer Table -->
-<table class="table-auto w-full border-collapse border border-gray-300">
-  <thead>
-    <tr class="bg-gray-200">
-      <th class="border px-4 py-2 cursor-pointer" onclick="customerController.sortRecords('name')">Name</th>
-      <th class="border px-4 py-2 cursor-pointer" onclick="customerController.sortRecords('city')">City</th>
-      <th class="border px-4 py-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody appml-controller="customerController" id="tableBody">
-  </tbody>
-</table>
+  <!-- Table -->
+  <table class="table-auto w-full border-collapse border border-gray-300">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border px-4 py-2 cursor-pointer" onclick="customerController.sortRecords('name')">Name</th>
+        <th class="border px-4 py-2 cursor-pointer" onclick="customerController.sortRecords('city')">City</th>
+        <th class="border px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
 
   <!-- Pagination -->
   <div id="pagination" class="mt-4 flex justify-center gap-2"></div>
